@@ -42,7 +42,6 @@
         android:textSize="@dimen/_25ssp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
@@ -53,10 +52,12 @@
         app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MultiplePlayers_Name_PlayerOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@android:drawable/ic_delete"
             android:drawablePadding="@dimen/_10sdp"
+            android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/_20ssp" />
 
@@ -64,7 +65,6 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
@@ -76,8 +76,10 @@
         app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MultiplePlayers_Name_PlayerTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:drawableLeft="@drawable/zero_30"
             android:drawablePadding="@dimen/_10sdp"
             android:textColor="@color/white"
@@ -87,6 +89,7 @@
 
 
  <androidx.appcompat.widget.AppCompatButton
+     android:id="@+id/MultiplePlayers_Button_Start"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:layout_margin="@dimen/_10sdp"
