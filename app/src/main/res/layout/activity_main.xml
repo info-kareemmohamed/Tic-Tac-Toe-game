@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="@dimen/_10sdp"
     tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_150sdp"
         android:src="@drawable/main_ba" />
 
     <LinearLayout
@@ -21,13 +21,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:src="@drawable/close" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/zero" />
 
     </LinearLayout>
@@ -35,18 +35,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_margin="30dp"
+        android:layout_margin="@dimen/_15sdp"
         android:gravity="center"
         android:text="Enter Players Names"
         android:textColor="#E1FFFFFF"
-        android:textSize="30sp" />
+        android:textSize="@dimen/_25ssp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/_10sdp"
         android:background="@color/dark_blue"
         android:hint="Player One"
         android:textColorHint="@color/light_white"
@@ -57,9 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@android:drawable/ic_delete"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/_10sdp"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_20ssp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +67,7 @@
         android:id="@+id/textField2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/_10sdp"
         android:background="@color/dark_blue"
         android:hint="Player Two"
         android:textColorHint="@color/light_white"
@@ -80,9 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/zero_30"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/_10sdp"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_20ssp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+ <androidx.appcompat.widget.AppCompatButton
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_margin="@dimen/_10sdp"
+     android:text="Start Game"
+     android:textColor="@color/white"
+     android:textSize="@dimen/_20ssp"
+     android:background="@drawable/round_back_blue1000"
+/>
 </LinearLayout>
