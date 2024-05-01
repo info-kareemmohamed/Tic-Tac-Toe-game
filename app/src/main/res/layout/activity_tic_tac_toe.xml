@@ -114,7 +114,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_350sdp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
         android:background="@drawable/round_back_purple"
         android:columnCount="3"
         android:padding="@dimen/_10sdp"
@@ -122,43 +125,52 @@
 
         <ImageView
             android:id="@+id/TicTac_Image_1"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="1" />
 
         <ImageView
             android:id="@+id/TicTac_Image_2"
             style="@style/TicTacImage"
+            android:tag="2"
 
             />
 
         <ImageView
             android:id="@+id/TicTac_Image_3"
             style="@style/TicTacImage"
+            android:tag="3"
 
             />
 
         <ImageView
             android:id="@+id/TicTac_Image_4"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="4" />
 
         <ImageView
             android:id="@+id/TicTac_Image_5"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="5" />
 
         <ImageView
             android:id="@+id/TicTac_Image_6"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="6" />
 
         <ImageView
             android:id="@+id/TicTac_Image_7"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="7" />
 
         <ImageView
             android:id="@+id/TicTac_Image_8"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="8" />
 
         <ImageView
             android:id="@+id/TicTac_Image_9"
-            style="@style/TicTacImage" />
+            style="@style/TicTacImage"
+            android:tag="9" />
 
     </GridLayout>
 
