@@ -3,10 +3,15 @@ package com.example.tic_tac_toe_game
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.tic_tac_toe_game.databinding.ActivityTicTacToeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class TicTacToe : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityTicTacToeBinding
@@ -70,7 +75,8 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
             val imageView = binding.TicTacGridLayout.getChildAt(i) as ImageView
 
             imageView.setImageResource(0)
-
+            imageView.background =
+                ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_dark)
         }
 
 
@@ -81,6 +87,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
         gameModel = model
 
     }
+
 
     private fun cheackForWinner() {
         val winningPosition = arrayOf(
@@ -93,10 +100,13 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
             intArrayOf(0, 4, 8),
             intArrayOf(2, 4, 6),
         )
+
+
+
         gameModel.apply {
             for (i in winningPosition) {
-                if (filledPosition[i[0]] == filledPosition[i[1]] && filledPosition[i[1]] == filledPosition[i[2]] && filledPosition[i[0]].isNotEmpty()) {
-                    gameStatus = GameStatus.FINISHED
+                if (filledPosition[i[0]].isNotEmpty() && filledPosition[i[0]] == filledPosition[i[1]] && filledPosition[i[1]] == filledPosition[i[2]]) {
+
                     winner =
                         if (filledPosition[i[0]] == "X") {
                             scoreX += 1
@@ -106,7 +116,15 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
                             scoreO += 1
                             binding.TicTacNameO.text.toString()
                         }
-                    CustomDialog(this@TicTacToe, "The Winner is ${winner}", "Continue").show()
+                    //  CustomDialog(this@TicTacToe, "The Winner is ${winner}", "Continue").show()
+                    (binding.TicTacGridLayout.getChildAt(i[0]) as ImageView).background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+                    (binding.TicTacGridLayout.getChildAt(i[1]) as ImageView).background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+                    (binding.TicTacGridLayout.getChildAt(i[2]) as ImageView).background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+                    gameStatus = GameStatus.FINISHED
+
 
                 }
             }
@@ -116,9 +134,11 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
             binding.TicTacScoreX.text = scoreX.toString()
             binding.TicTacScoreO.text = scoreO.toString()
             updateGameData(this)
+
         }
 
     }
+
 
     override fun onClick(v: View?) {
 
@@ -127,7 +147,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
             var position: Int = (v?.tag.toString()).toInt() - 1
 
 
-            if (filledPosition[position].isEmpty()) {
+            if (filledPosition[position].isEmpty() && gameStatus != GameStatus.FINISHED) {
 
                 if (currentPlayer) {
                     (v as ImageView).setImageResource(R.drawable.close)
@@ -152,7 +172,14 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
                 updateGameData(this)
                 cheackForWinner()
             }
-            if (gameStatus == GameStatus.FINISHED) startGame()
+            if (gameStatus == GameStatus.FINISHED) {
+                CoroutineScope(Dispatchers.Main).launch {
+
+                    delay(1000)
+                    startGame()
+                }
+
+            }
 
         }
 

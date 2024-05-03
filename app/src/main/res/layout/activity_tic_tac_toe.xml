@@ -130,6 +130,7 @@
         <ImageView
             android:id="@+id/TicTac_Image_1"
             style="@style/TicTacImage"
+           android:background="@drawable/round_back_border"
             android:tag="1" />
 
         <ImageView
