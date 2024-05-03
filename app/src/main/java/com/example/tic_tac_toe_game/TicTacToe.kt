@@ -3,16 +3,16 @@ package com.example.tic_tac_toe_game
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.tic_tac_toe_game.databinding.ActivityTicTacToeBinding
 
 class TicTacToe : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityTicTacToeBinding
     private lateinit var intent: Intent
-    private var gameModel: GameModel? = null
+    private var gameModel: GameModel = GameModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTicTacToeBinding.inflate(layoutInflater)
@@ -38,22 +38,47 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun startGame() {
-        gameModel = GameModel()
+
+        drawScreen()
+        gameModel.apply {
+
+            updateGameData(
+                GameModel(
+                    scoreO = scoreO,
+                    scoreX = scoreX,
+                    gameStatus = GameStatus.INPROGRESS
+
+                )
+
+            )
+
+        }
+    }
+
+    private fun drawScreen() {
+
         val childCount = binding.TicTacGridLayout.childCount
+        binding.TicTacLinearLayoutO.background =
+            ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_dark)
+        binding.TicTacLinearLayoutX.background =
+            ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+        binding.TicTacScoreX.text = gameModel.scoreX.toString()
+        binding.TicTacScoreO.text = gameModel.scoreO.toString()
+
 
         for (i in 0 until childCount) {
             val imageView = binding.TicTacGridLayout.getChildAt(i) as ImageView
 
-            imageView.setImageResource(R.drawable.round_back_dark)
+            imageView.setImageResource(0)
 
         }
 
-        gameModel?.gameStatus = GameStatus.INPROGRESS
-        updateGameData(gameModel!!)
+
     }
 
     private fun updateGameData(model: GameModel) {
         GameData.saveGameModel(model)
+        gameModel = model
 
     }
 
@@ -68,18 +93,28 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
             intArrayOf(0, 4, 8),
             intArrayOf(2, 4, 6),
         )
-        gameModel?.apply {
+        gameModel.apply {
             for (i in winningPosition) {
                 if (filledPosition[i[0]] == filledPosition[i[1]] && filledPosition[i[1]] == filledPosition[i[2]] && filledPosition[i[0]].isNotEmpty()) {
                     gameStatus = GameStatus.FINISHED
-                    winner = filledPosition[i[0]]
-                    Toast.makeText(applicationContext, winner, Toast.LENGTH_LONG).show()
+                    winner =
+                        if (filledPosition[i[0]] == "X") {
+                            scoreX += 1
+                            binding.TicTacNameX.text.toString()
+
+                        } else {
+                            scoreO += 1
+                            binding.TicTacNameO.text.toString()
+                        }
+                    CustomDialog(this@TicTacToe, "The Winner is ${winner}", "Continue").show()
 
                 }
             }
             if (filledPosition.none() { it.isEmpty() }) {
                 gameStatus = GameStatus.FINISHED
             }
+            binding.TicTacScoreX.text = scoreX.toString()
+            binding.TicTacScoreO.text = scoreO.toString()
             updateGameData(this)
         }
 
@@ -87,13 +122,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        gameModel?.apply {
-
-            if (gameStatus != GameStatus.INPROGRESS) {
-                Toast.makeText(applicationContext, "Game not Started", Toast.LENGTH_SHORT).show()
-                return
-            }else if(gameStatus==GameStatus.FINISHED)startGame()
-
+        gameModel.apply {
 
             var position: Int = (v?.tag.toString()).toInt() - 1
 
@@ -103,19 +132,32 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
                 if (currentPlayer) {
                     (v as ImageView).setImageResource(R.drawable.close)
                     filledPosition[position] = "X"
+                    binding.TicTacLinearLayoutX.background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_dark)
+                    binding.TicTacLinearLayoutO.background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+
                     currentPlayer = false;
                 } else {
 
                     (v as ImageView).setImageResource(R.drawable.zero)
                     filledPosition[position] = "O"
+                    binding.TicTacLinearLayoutO.background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_dark)
+                    binding.TicTacLinearLayoutX.background =
+                        ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
+
                     currentPlayer = true;
                 }
                 updateGameData(this)
                 cheackForWinner()
             }
+            if (gameStatus == GameStatus.FINISHED) startGame()
 
         }
 
 
     }
+
+
 }

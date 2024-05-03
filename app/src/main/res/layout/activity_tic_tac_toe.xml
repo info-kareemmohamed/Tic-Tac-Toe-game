@@ -22,6 +22,7 @@
         app:cardElevation="@dimen/_10sdp">
 
         <LinearLayout
+            android:id="@+id/TicTac_LinearLayout_X"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/round_back_border"
@@ -41,6 +42,7 @@
 
 
             <TextView
+                android:id="@+id/TicTac_Score_X"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_1sdp"
@@ -72,6 +74,7 @@
         app:cardElevation="@dimen/_10sdp">
 
         <LinearLayout
+            android:id="@+id/TicTac_LinearLayout_O"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/round_back_dark"
@@ -91,6 +94,7 @@
 
 
             <TextView
+                android:id="@+id/TicTac_Score_O"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_1sdp"
