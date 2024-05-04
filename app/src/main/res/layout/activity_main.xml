@@ -7,7 +7,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="@dimen/_10sdp"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="horizontal">
 
         <ImageView
@@ -32,70 +33,24 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
-        android:gravity="center"
-        android:text="Enter Players Names"
-        android:textColor="#E1FFFFFF"
-        android:textSize="@dimen/_25ssp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@color/dark_blue"
-        android:hint="Player One"
-        android:textColorHint="@color/light_white"
-        app:boxStrokeColor="@color/white"
-        app:hintTextColor="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MultiplePlayers_Name_PlayerOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@android:drawable/ic_delete"
-            android:drawablePadding="@dimen/_10sdp"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@color/dark_blue"
-        android:hint="Player Two"
-        android:textColorHint="@color/light_white"
-        app:boxStrokeColor="@color/white"
-
-        app:hintTextColor="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MultiplePlayers_Name_PlayerTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:drawableLeft="@drawable/zero_30"
-            android:drawablePadding="@dimen/_10sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Home_PlayOnline"
+        android:text="play online"
+        style="@style/Button_Home"
+        />
 
  <androidx.appcompat.widget.AppCompatButton
-     android:id="@+id/MultiplePlayers_Button_Start"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:layout_margin="@dimen/_10sdp"
-     android:text="Start Game"
-     android:textColor="@color/white"
-     android:textSize="@dimen/_20ssp"
-     android:background="@drawable/round_back_blue1000"
+     android:id="@+id/Home_Multiplayer"
+     android:text="Multiplayer"
+    style="@style/Button_Home"
 />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Home_MultiplayerBluetooth"
+        android:text="Multiplayer  Bluetooth"
+        style="@style/Button_Home"
+        />
+
+
 </LinearLayout>
