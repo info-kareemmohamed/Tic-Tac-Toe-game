@@ -11,7 +11,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_height="@dimen/_125sdp"
         android:src="@drawable/main_ba" />
 
     <LinearLayout
@@ -21,13 +21,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:src="@drawable/close" />
 
         <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:src="@drawable/zero" />
 
     </LinearLayout>
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:gravity="center"
         android:text="Enter Players Names"
         android:textColor="#E1FFFFFF"
@@ -59,7 +59,7 @@
             android:drawablePadding="@dimen/_10sdp"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp" />
+            android:textSize="@dimen/_18ssp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +83,7 @@
             android:drawableLeft="@drawable/zero_30"
             android:drawablePadding="@dimen/_10sdp"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp" />
+            android:textSize="@dimen/_18ssp" />
 
 
 
@@ -105,10 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:inputType="number"
             android:drawableLeft="@android:drawable/btn_star_big_on"
             android:drawablePadding="@dimen/_10sdp"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp" />
+            android:textSize="@dimen/_18ssp"  />
 
 
 

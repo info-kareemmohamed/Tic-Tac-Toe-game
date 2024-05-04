@@ -22,6 +22,7 @@ class Multiplayer : AppCompatActivity() {
             intent = Intent(this, TicTacToe::class.java)
             intent.putExtra("nameOne",binding.MultiplePlayersNamePlayerOne.text.toString())
             intent.putExtra("nameTwo",binding.MultiplePlayersNamePlayerTwo.text.toString())
+            intent.putExtra("numberOfCycles",binding.MultiplePlayersNumberOfCycles.text.toString())
             startActivity(intent)
         }
     }

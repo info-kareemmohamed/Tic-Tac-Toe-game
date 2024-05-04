@@ -8,11 +8,15 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 
-
+interface CustomDialogClickListener {
+    fun onButtonClick()
+}
 class CustomDialog(
     private val context: Context,
     private val message: String,
-    private val textButton: String
+    private val textButton: String,
+    private val clickListener: CustomDialogClickListener? = null
+
 ) : Dialog(context) {
 
     init {
@@ -26,7 +30,15 @@ class CustomDialog(
         val button = findViewById<Button>(R.id.Dialog_Button_Start)
         button.text = textButton
         button.setOnClickListener {
+                clickListener?.onButtonClick()
+                dismiss()
+
             dismiss()
         }
     }
+
+
+
+
+
 }

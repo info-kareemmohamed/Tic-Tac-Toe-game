@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import com.example.tic_tac_toe_game.CustomDialog
+import com.example.tic_tac_toe_game.CustomDialogClickListener
 import com.example.tic_tac_toe_game.GameData
 import com.example.tic_tac_toe_game.GameModel
 import com.example.tic_tac_toe_game.GameStatus
@@ -20,6 +22,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityTicTacToeBinding
     private lateinit var intent: Intent
     private var gameModel: GameModel = GameModel()
+    private var numberOfCycles = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +31,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
         intent = getIntent()
         binding.TicTacNameO.text = intent.getStringExtra("nameTwo")
         binding.TicTacNameX.text = intent.getStringExtra("nameOne")
-
+        numberOfCycles = intent.getStringExtra("numberOfCycles")!!.toInt()
         setOnClick()
         startGame()
     }
@@ -128,7 +131,7 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
                             scoreO += 1
                             binding.TicTacNameO.text.toString()
                         }
-                    //  CustomDialog(this@TicTacToe, "The Winner is ${winner}", "Continue").show()
+
                     (binding.TicTacGridLayout.getChildAt(i[0]) as ImageView).background =
                         ContextCompat.getDrawable(this@TicTacToe, R.drawable.round_back_border)
                     (binding.TicTacGridLayout.getChildAt(i[1]) as ImageView).background =
@@ -187,7 +190,19 @@ class TicTacToe : AppCompatActivity(), View.OnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {
 
                     delay(1000)
-                    startGame()
+                    if (numberOfCycles == maxOf(scoreO, scoreX)) CustomDialog(
+                        this@TicTacToe,
+                        "The Winner is ${winner}",
+                        "Start new Cycles", object : CustomDialogClickListener {
+                            override fun onButtonClick() {
+                                scoreX = 0
+                                scoreO = 0
+                                startGame()
+                            }
+                        }
+                    ).show()
+                    else
+                        startGame()
                 }
 
             }
